@@ -8,6 +8,7 @@ image = np.array([[10,10,10,0,0,0],
                   [10,10,10,0,0,0],
                   [10,10,10,0,0,0]])
 
+# basic filter
 v_kluster = np.array([[1,0,-1],
                       [1,0,-1],
                       [1,0,-1]])
@@ -21,22 +22,20 @@ v_conved = signal.convolve2d(image,v_kluster ,mode='same',boundary='symm')
 print('\n\nv_convolved:')
 print(v_conved)
 
-h_image = np.array([[0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0],
-                    [10,10,10,10,10,10],
-                    [10,10,10,10,10,10],
-                    [10,10,10,10,10,10]])
-print('\n\nimage with horizontal lines:')
-print(h_image)
+# Sobel filter
+sobel_filter = np.array([[1, 0, -1],
+                         [2, 0, -2],
+                         [1, 0, -1]])
 
-h_kluster = np.array([[1,1,1],
-                   [0,0,0],
-                   [-1,-1,-1]])
-print('\n\nh_kluster:')
-print(h_kluster)
+sobel_filter_convolved = signal.convolve2d(image,sobel_filter,mode='same',boundary='symm')
+print('Sobel Filter result:')
+print(sobel_filter_convolved)
 
-h_convolved = signal.convolve2d(h_image,h_kluster,mode='same',boundary='symm')
+# Scharr filter
+scharr_filter = np.array([[3,0,-3],
+                          [10,0,-10],
+                          [3,0,-3]])
 
-print('\n\nh_convolved:')
-print(h_convolved)
+scharr_filter_convolved = signal.convolve2d(image,scharr_filter,mode='same',boundary='symm')
+print('Scharr Filter result:')
+print(scharr_filter_convolved)
